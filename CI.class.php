@@ -166,8 +166,12 @@ class CI implements IF_UNIT
 				continue;
 			}
 
+			//	...
+			require_once($file);
+
 			//	Instantiate Object from class.
 			$class = $namespace.basename($file, '.class.php');
+			$class = str_replace('-', '\\', $class);
 			$obj = new $class();
 
 			//	Inspect each instantiate object.
