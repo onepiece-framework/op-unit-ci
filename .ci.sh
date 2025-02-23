@@ -18,20 +18,13 @@ COMMAND=$(ps -ocommand= -p $PPID)
 ARRAY=(${COMMAND//,/ })
 REMOTE=${ARRAY[2]}
 BRANCH=`git rev-parse --abbrev-ref HEAD`
-PHP=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"`
+PHP="74"
 
 # Get current branch name
 #BRANCH=`git rev-parse --abbrev-ref HEAD`
 if [ ! $BRANCH ]; then
   echo "ci.sh: Empty branch name."
   exit 1
-fi
-
-# Check if branch name
-if [[  $BRANCH =~ ^php([0-9]{2})$ ]]; then
-    PHP=${BASH_REMATCH[1]}
-else
-    PHP=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"`
 fi
 
 # Set CI saved commit id file name
