@@ -87,6 +87,11 @@ class CI implements IF_UNIT, IF_CI
 		if( self::Dryrun() ){
 			return;
 		}
+
+		//	Make them aware not yet commit.
+		echo PHP_EOL . 'Git stash save...' . PHP_EOL . PHP_EOL;
+
+		//	...
 		include(__DIR__.'/include/GitStashSave.php');
 	}
 
